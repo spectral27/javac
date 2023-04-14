@@ -1,0 +1,23 @@
+javac -d temp/ -cp .:lib/jackson-2.14.2/* *.java
+
+cd temp/
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+  
+  if [ -d META-INF/ ]; then
+    rm -rf META-INF/
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+cd ..
+
+jar -cfm main.jar manifest.mf -C temp .
+
+rm -r temp/
+
+java -jar main.jar

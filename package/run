@@ -1,0 +1,2 @@
+javac -d bin -cp src/ src/spc/Main.java
+java -cp bin/ spc.Main

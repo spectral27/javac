@@ -1,0 +1,3 @@
+javac Main.java
+jar -cf main.jar ./*.class
+java -cp main.jar Main

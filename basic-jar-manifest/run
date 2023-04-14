@@ -1,0 +1,3 @@
+javac Main.java
+jar -cfm main.jar manifest.mf ./*.class
+java -jar main.jar

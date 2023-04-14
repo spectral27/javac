@@ -1,0 +1,3 @@
+javac -d bin -cp src/ src/spc/Main.java
+jar -cfm main.jar manifest.mf -C bin .
+java -jar main.jar

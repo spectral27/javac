@@ -1,0 +1,21 @@
+if [ ! -d lib ]; then
+  mkdir lib
+fi
+
+cd lib
+
+if [ ! -d spring-context-6.0.8 ]; then
+  mkdir spring-context-6.0.8
+fi
+
+cd spring-context-6.0.8
+
+mavenrepo=https://repo1.maven.org/maven2
+spring=org/springframework
+
+wget $mavenrepo/$spring/spring-context/6.0.8/spring-context-6.0.8.jar
+wget $mavenrepo/$spring/spring-aop/6.0.8/spring-aop-6.0.8.jar
+wget $mavenrepo/$spring/spring-beans/6.0.8/spring-beans-6.0.8.jar
+wget $mavenrepo/$spring/spring-core/6.0.8/spring-core-6.0.8.jar
+wget $mavenrepo/$spring/spring-jcl/6.0.8/spring-jcl-6.0.8.jar
+wget $mavenrepo/$spring/spring-expression/6.0.8/spring-expression-6.0.8.jar

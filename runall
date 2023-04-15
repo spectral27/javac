@@ -1,0 +1,19 @@
+for dir in */. ; do
+  cd $dir
+
+  echo "+----------------+"
+  echo $(basename $PWD)
+  echo "+----------------+"
+
+  if [ -f dep ]; then
+    sh dep
+  fi
+
+  if [ -f run ]; then
+    sh run
+  fi
+
+  echo
+
+  cd ..
+done

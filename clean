@@ -1,0 +1,17 @@
+for dir in */. ; do
+  cd $dir
+
+  if [ -d bin ]; then
+    rm -r bin
+  fi
+
+  if [ -d lib ]; then
+    rm -r lib
+  fi
+
+  find . -name "*.class" -type f -delete
+
+  find . -name "*.jar" -type f -delete
+
+  cd ..
+done

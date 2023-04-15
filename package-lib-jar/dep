@@ -1,0 +1,18 @@
+if [ ! -d lib/ ]; then
+  mkdir lib/
+fi
+
+cd lib/
+
+if [ ! -d jackson-2.14.2/ ]; then
+  mkdir jackson-2.14.2
+fi
+
+cd jackson-2.14.2/
+
+mavenrepo=https://repo1.maven.org/maven2
+jackson=com/fasterxml/jackson/core
+
+wget $mavenrepo/$jackson/jackson-databind/2.14.2/jackson-databind-2.14.2.jar
+wget $mavenrepo/$jackson/jackson-annotations/2.14.2/jackson-annotations-2.14.2.jar
+wget $mavenrepo/$jackson/jackson-core/2.14.2/jackson-core-2.14.2.jar

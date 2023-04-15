@@ -1,0 +1,27 @@
+javac -d bin/ -cp src:lib/jackson-2.14.2/* src/spc/*.java
+
+if [ ! -d temp ]; then
+  mkdir temp
+fi
+
+cd temp
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+  
+  if [ -d META-INF/ ]; then
+    rm -rf META-INF/
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+cd ..
+
+jar -cf main.jar -C bin . -C temp .
+
+rm -r temp/
+
+java -cp main.jar spc.Main

@@ -1,0 +1,43 @@
+find src -type f -name "*.java" > sourcefiles.txt
+
+javac -d bin/ -cp src:lib/hibernate-6.2.1/*:lib/h2-2.1.214/* @sourcefiles.txt
+cd src
+find . -name '*.sql' -o -name '*.xml' | cpio -pdm --quiet ../bin
+cd ..
+#cp src/*.sql bin
+#cp src/*.xml bin
+#find ./src -name '*.sql' -exec cp '{}' bin \;
+#find ./src -name '*.xml' -exec cp --parents '{}' bin \;
+#cp src/* bin
+#cp src/hibernate.cfg.xml bin/hibernate.cfg.xml
+#cp src/data.sql bin/data.sql
+#cp src/orm.xml bin/orm.xml
+# cp src/spc/JavaObject.hbm.xml bin/spc/JavaObject.hbm.xml
+
+rm sourcefiles.txt
+
+if [ ! -d temp ]; then
+  mkdir temp
+fi
+
+cd temp
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+  
+  if [ -d META-INF/ ]; then
+    rm -rf META-INF/
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+cd ..
+
+jar -cfm main.jar manifest.mf -C bin . -C temp .
+
+rm -r temp/
+
+java -jar main.jar

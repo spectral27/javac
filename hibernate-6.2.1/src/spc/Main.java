@@ -15,17 +15,14 @@ public class Main {
     public static void main(String[] args) {
         try {
             Class.forName("org.h2.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
             DriverManager.getConnection(
-                    "jdbc:h2:mem:db1;INIT=runscript from 'classpath:data.sql'",
-                    "username",
-                    "password"
+                "jdbc:h2:mem:db1;INIT=runscript from 'classpath:data.sql'",
+                "username",
+                "password"
             );
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            System.exit(1);
         }
 
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -48,11 +45,9 @@ public class Main {
 
         session = sessionFactory.openSession();
         session.beginTransaction();
-
         List<JavaObject> javaObjects = session
                 .createQuery("select j from JavaObject j", JavaObject.class)
                 .list();
-
         session.getTransaction().commit();
         session.close();
 

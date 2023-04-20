@@ -28,8 +28,8 @@ done
 
 cd ..
 
-jar -cfm main.jar manifest.mf -C bin . -C temp .
+jar -cfm hibernate-6.2.1.jar manifest.mf -C bin . -C temp .
 
 rm -r temp
 
-java -jar main.jar
+java -jar hibernate-6.2.1.jar

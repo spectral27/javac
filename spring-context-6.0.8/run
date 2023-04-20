@@ -49,8 +49,8 @@ mv spring.tooling META-INF/.
 
 cd ..
 
-jar -cfm main.jar manifest.mf -C bin . -C temp .
+jar -cfm spring-context-6.0.8.jar manifest.mf -C bin . -C temp .
 
 rm -r temp
 
-java -jar main.jar
+java -jar spring-context-6.0.8.jar

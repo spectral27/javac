@@ -1,6 +1,6 @@
 find src -type f -name "*.java" > sourcefiles.txt
 
-javac -d bin/ -cp src:lib/hibernate-6.2.1/*:lib/h2-2.1.214/* @sourcefiles.txt
+javac -d bin/ -cp lib/hibernate-6.2.1/*:lib/hibernate-hikaricp-6.2.1/*:lib/slf4j-simple-1.7.25/*:lib/h2-2.1.214/*:src @sourcefiles.txt
 
 rm sourcefiles.txt
 

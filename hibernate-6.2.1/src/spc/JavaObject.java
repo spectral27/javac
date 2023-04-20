@@ -2,11 +2,20 @@ package spc;
 
 public class JavaObject {
     
+    private int id;
     private String vendor;
     private String version;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getVendor() {
-        return this.vendor;
+        return vendor;
     }
 
     public void setVendor(String vendor) {
@@ -14,7 +23,7 @@ public class JavaObject {
     }
 
     public String getVersion() {
-        return this.version;
+        return version;
     }
 
     public void setVersion(String version) {

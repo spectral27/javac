@@ -5,7 +5,8 @@
     <entity class="spc.JavaObject">
         <table name="java_object"/>
         <attributes>
-            <id name="vendor"/>
+            <id name="id"/>
+            <basic name="vendor"/>
             <basic name="version"/>
         </attributes>
     </entity>

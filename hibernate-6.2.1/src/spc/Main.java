@@ -29,10 +29,12 @@ public class Main {
         SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 
         JavaObject java = new JavaObject();
+        java.setId(1);
         java.setVendor(System.getProperty("java.vendor"));
         java.setVersion(System.getProperty("java.version"));
 
         JavaObject hibernate = new JavaObject();
+        hibernate.setId(2);
         hibernate.setVendor("Hibernate Framework");
         hibernate.setVersion("6.2.1");
 

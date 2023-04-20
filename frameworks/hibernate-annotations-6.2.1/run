@@ -72,10 +72,10 @@ cd ..
 touch manifest.mf
 echo "Main-Class: spc.Main" > manifest.mf
 
-jar -cfm hibernate-6.2.1.jar manifest.mf -C bin . -C temp .
+jar -cfm hibernate-xml-6.2.1.jar manifest.mf -C bin . -C temp .
 
 rm -r bin
 rm -r temp
 rm manifest.mf
 
-java -jar hibernate-6.2.1.jar
+java -jar hibernate-xml-6.2.1.jar

@@ -1,0 +1,48 @@
+find src -type f -name "*.java" > sourcefiles.txt
+
+javac -d bin/ -cp lib/hibernate-6.2.1/*:lib/hibernate-hikaricp-6.2.1/*:lib/slf4j-simple-1.7.25/*:lib/h2-2.1.214/*:src @sourcefiles.txt
+
+rm sourcefiles.txt
+
+cd src
+find . -name '*.sql' -o -name '*.xml' | cpio -pdmu --quiet ../bin
+cd ..
+
+if [ ! -d temp ]; then
+  mkdir temp
+fi
+
+cd temp
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+
+  if [ -d META-INF/services/ ]; then
+    if [ ! -d metainf/ ]; then
+      mkdir metainf/
+    fi
+    cp -r META-INF/services/ metainf/
+  fi
+  
+  if [ -d META-INF/ ]; then
+    rm -rf META-INF/
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+if [ -d metainf/ ]; then
+  mkdir META-INF/
+  mv metainf/services/ META-INF/
+  # mv jakarta.persistence.spi.PersistenceProvider \
+fi
+
+cd ..
+
+jar -cfm jpa-annotations-3.1.0.jar manifest.mf -C bin . -C temp .
+
+rm -r temp
+
+java -jar jpa-annotations-3.1.0.jar

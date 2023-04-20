@@ -1,0 +1,74 @@
+if [ ! -d lib/ ]; then
+  mkdir lib/
+fi
+
+cd lib/
+
+# • • • • • • • • • • • • • • • • 
+# • Hibernate 6.2.1             • 
+# • • • • • • • • • • • • • • • •
+if [ ! -d hibernate-6.2.1/ ]; then
+  mkdir hibernate-6.2.1/
+fi
+
+cd hibernate-6.2.1/
+
+wget -O hibernate-core-6.2.1.Final.jar https://repo1.maven.org/maven2/org/hibernate/orm/hibernate-core/6.2.1.Final/hibernate-core-6.2.1.Final.jar
+  wget -O jakarta.persistence-api-3.1.0.jar https://repo1.maven.org/maven2/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar
+  wget -O jakarta.transaction-api-2.0.1.jar https://repo1.maven.org/maven2/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar
+  wget -O classmate-1.5.1.jar https://repo1.maven.org/maven2/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar
+  wget -O jandex-3.0.5.jar https://repo1.maven.org/maven2/io/smallrye/jandex/3.0.5/jandex-3.0.5.jar
+  wget -O jakarta.inject-api-2.0.1.jar https://repo1.maven.org/maven2/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar
+  wget -O jakarta.xml.bind-api-4.0.0.jar https://repo1.maven.org/maven2/jakarta/xml/bind/jakarta.xml.bind-api/4.0.0/jakarta.xml.bind-api-4.0.0.jar
+    wget -O jakarta.activation-api-2.1.0.jar https://repo1.maven.org/maven2/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar
+  wget -O byte-buddy-1.12.18.jar https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy/1.12.18/byte-buddy-1.12.18.jar
+  wget -O antlr4-runtime-4.10.1.jar https://repo1.maven.org/maven2/org/antlr/antlr4-runtime/4.10.1/antlr4-runtime-4.10.1.jar
+  wget -O jaxb-runtime-4.0.2.jar https://repo1.maven.org/maven2/org/glassfish/jaxb/jaxb-runtime/4.0.2/jaxb-runtime-4.0.2.jar
+    wget -O jaxb-core-4.0.2.jar https://repo1.maven.org/maven2/org/glassfish/jaxb/jaxb-core/4.0.2/jaxb-core-4.0.2.jar
+      wget -O istack-commons-runtime-4.1.1.jar https://repo1.maven.org/maven2/com/sun/istack/istack-commons-runtime/4.1.1/istack-commons-runtime-4.1.1.jar
+      wget -O txw2-4.0.2.jar https://repo1.maven.org/maven2/org/glassfish/jaxb/txw2/4.0.2/txw2-4.0.2.jar
+  wget -O hibernate-commons-annotations-6.0.6.Final.jar https://repo1.maven.org/maven2/org/hibernate/common/hibernate-commons-annotations/6.0.6.Final/hibernate-commons-annotations-6.0.6.Final.jar
+  wget -O jboss-logging-3.5.0.Final.jar https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.5.0.Final/jboss-logging-3.5.0.Final.jar
+
+cd ..
+
+# • • • • • • • • • • • • • • • • 
+# • Hibernate HikariCP 6.2.1    •
+# • • • • • • • • • • • • • • • •
+if [ ! -d hibernate-hikaricp-6.2.1/ ]; then
+  mkdir hibernate-hikaricp-6.2.1/
+fi
+
+cd hibernate-hikaricp-6.2.1/
+
+wget -O hibernate-hikaricp-6.2.1.Final.jar https://repo1.maven.org/maven2/org/hibernate/orm/hibernate-hikaricp/6.2.1.Final/hibernate-hikaricp-6.2.1.Final.jar
+  wget -O HikariCP-3.2.0.jar https://repo1.maven.org/maven2/com/zaxxer/HikariCP/3.2.0/HikariCP-3.2.0.jar
+    wget -O slf4j-api-1.7.25.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar
+
+cd ..
+
+# • • • • • • • • • • • • • • • • 
+# • SLF4J 1.7.25                •
+# • • • • • • • • • • • • • • • •
+if [ ! -d slf4j-simple-1.7.25/ ]; then
+  mkdir slf4j-simple-1.7.25/
+fi
+
+cd slf4j-simple-1.7.25/
+
+wget -O slf4j-simple-1.7.25.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-simple/1.7.25/slf4j-simple-1.7.25.jar
+
+cd ..
+
+# • • • • • • • • • • • • • • • • 
+# • H2 Database 2.1.214         •
+# • • • • • • • • • • • • • • • •
+if [ ! -d h2-2.1.214/ ]; then
+  mkdir h2-2.1.214/
+fi
+
+cd h2-2.1.214/
+
+wget -O h2-2.1.214.jar https://repo1.maven.org/maven2/com/h2database/h2/2.1.214/h2-2.1.214.jar
+
+cd ..

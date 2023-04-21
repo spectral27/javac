@@ -39,8 +39,15 @@ public class Main {
 
         repository.insertJavaObject(spring);
 
+        JavaObject jpa = new JavaObject();
+        jpa.setId(3);
+        jpa.setVendor("Jakarta Persistence API");
+        jpa.setVersion("3.1.0");
+
+        repository.insertJavaObject(jpa);
+
         JavaObject hibernate = new JavaObject();
-        hibernate.setId(3);
+        hibernate.setId(4);
         hibernate.setVendor("Hibernate ORM");
         hibernate.setVersion("6.2.1");
 

@@ -92,10 +92,10 @@ cd ..
 touch manifest.mf
 echo "Main-Class: spc.Main" > manifest.mf
 
-jar -cfm spring-orm-hibernate-xml-6.0.8.jar manifest.mf -C bin . -C temp .
+jar -cfm spring-orm-jpa-xml-6.0.8.jar manifest.mf -C bin . -C temp .
 
 rm -r bin
 rm -r temp
 rm manifest.mf
 
-java -jar spring-orm-hibernate-xml-6.0.8.jar
+java -jar spring-orm-jpa-xml-6.0.8.jar

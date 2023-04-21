@@ -1,0 +1,101 @@
+find src -type f -name "*.java" > sourcefiles.txt
+
+find lib -type f -name '*.jar' | tr '\n' ':' > jars.txt
+jars=$(cat jars.txt)
+
+javac -d bin -cp $jars:src @sourcefiles.txt
+#javac -d bin -cp src:lib/spring-context-6.0.8/* @sourcefiles.txt
+
+rm sourcefiles.txt
+rm jars.txt
+
+cd src
+
+find . -type f -name '*.sql' -o -name '*.xml' | cpio -pdu --quiet ../bin
+
+cd ..
+
+if [ ! -d temp ]; then
+  mkdir temp
+fi
+
+cd temp
+
+touch spring.handlers
+touch spring.schemas
+touch spring.tooling
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+  
+  if [ -d META-INF ]; then
+    if [ -f META-INF/spring.handlers ]; then
+      cat META-INF/spring.handlers >> spring.handlers
+    fi
+
+    if [ -f META-INF/spring.schemas ]; then
+      cat META-INF/spring.schemas >> spring.schemas
+    fi
+
+    if [ -f META-INF/spring.tooling ]; then
+      cat META-INF/spring.tooling >> spring.tooling
+    fi
+
+    if [ -f META-INF/INDEX.LIST ]; then
+      rm META-INF/INDEX.LIST
+    fi
+
+    if [ -f META-INF/LICENSE ]; then
+      rm META-INF/LICENSE
+    fi
+
+    if [ -f META-INF/LICENSE.md ]; then
+      rm META-INF/LICENSE.md
+    fi
+
+    if [ -f META-INF/LICENSE.txt ]; then
+      rm META-INF/LICENSE.txt
+    fi
+
+    if [ -f META-INF/mailcap.default ]; then
+      rm META-INF/mailcap.default
+    fi
+
+    if [ -f META-INF/MANIFEST.MF ]; then
+      rm META-INF/MANIFEST.MF
+    fi
+
+    if [ -f META-INF/mimetypes.default ]; then
+      rm META-INF/mimetypes.default
+    fi
+
+    if [ -f META-INF/NOTICE ]; then
+      rm META-INF/NOTICE
+    fi
+
+    if [ -f META-INF/NOTICE.md ]; then
+      rm META-INF/NOTICE.md
+    fi
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+mv spring.handlers META-INF/.
+mv spring.schemas META-INF/.
+mv spring.tooling META-INF/.
+
+cd ..
+
+touch manifest.mf
+echo "Main-Class: spc.Main" > manifest.mf
+
+jar -cfm spring-orm-hibernate-xml-6.0.8.jar manifest.mf -C bin . -C temp .
+
+rm -r bin
+rm -r temp
+rm manifest.mf
+
+java -jar spring-orm-hibernate-xml-6.0.8.jar

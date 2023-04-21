@@ -30,14 +30,20 @@ public class Main {
         java.setVendor(System.getProperty("java.vendor"));
         java.setVersion(System.getProperty("java.version"));
 
+        JavaObject jpa = new JavaObject();
+        jpa.setId(2);
+        jpa.setVendor("Jakarta Persistence API");
+        jpa.setVersion("3.1.0");
+
         JavaObject hibernate = new JavaObject();
-        hibernate.setId(2);
-        hibernate.setVendor("Hibernate Framework");
+        hibernate.setId(3);
+        hibernate.setVendor("Hibernate ORM");
         hibernate.setVersion("6.2.1");
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(java);
+        entityManager.persist(jpa);
         entityManager.persist(hibernate);
         entityManager.getTransaction().commit();
         entityManager.close();

@@ -49,8 +49,13 @@ mv spring.tooling META-INF/.
 
 cd ..
 
-jar -cfm spring-context-6.0.8.jar manifest.mf -C bin . -C temp .
+touch manifest.mf
+echo "Main-Class: spc.Main" > manifest.mf
 
+jar -cfm spring-context-xml-6.0.8.jar manifest.mf -C bin . -C temp .
+
+rm -r bin
 rm -r temp
+rm manifest.mf
 
-java -jar spring-context-6.0.8.jar
+java -jar spring-context-xml-6.0.8.jar

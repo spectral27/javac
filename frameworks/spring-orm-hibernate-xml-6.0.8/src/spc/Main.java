@@ -21,7 +21,7 @@ public class Main {
             System.exit(1);
         }
         
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans1.xml");
 
         JavaObjectRepository repository = context.getBean("javaObjectRepository", JavaObjectRepository.class);
 

@@ -1,0 +1,67 @@
+if [ ! -d lib/ ]; then
+  mkdir lib/
+fi
+
+cd lib/
+
+# Hibernate 5.6.15
+if [ ! -d hibernate-5.6.15/ ]; then
+  mkdir hibernate-5.6.15/
+fi
+
+cd hibernate-5.6.15/
+
+wget -O hibernate-core-5.6.15.Final.jar https://repo1.maven.org/maven2/org/hibernate/hibernate-core/5.6.15.Final/hibernate-core-5.6.15.Final.jar
+  wget -O antlr-2.7.7.jar https://repo1.maven.org/maven2/antlr/antlr/2.7.7/antlr-2.7.7.jar
+  wget -O classmate-1.5.1.jar https://repo1.maven.org/maven2/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar
+  wget -O javax.activation-api-1.2.0.jar https://repo1.maven.org/maven2/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar
+  wget -O javax.persistence-api-2.2.jar https://repo1.maven.org/maven2/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar
+  wget -O jaxb-api-2.3.1.jar https://repo1.maven.org/maven2/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar
+  wget -O byte-buddy-1.12.18.jar https://repo1.maven.org/maven2/net/bytebuddy/byte-buddy/1.12.18/byte-buddy-1.12.18.jar
+  wget -O jaxb-runtime-2.3.1.jar https://repo1.maven.org/maven2/org/glassfish/jaxb/jaxb-runtime/2.3.1/jaxb-runtime-2.3.1.jar
+    wget -O istack-commons-runtime-3.0.7.jar https://repo1.maven.org/maven2/com/sun/istack/istack-commons-runtime/3.0.7/istack-commons-runtime-3.0.7.jar
+    wget -O FastInfoset-1.2.15.jar https://repo1.maven.org/maven2/com/sun/xml/fastinfoset/FastInfoset/1.2.15/FastInfoset-1.2.15.jar
+    wget -O txw2-2.3.1.jar https://repo1.maven.org/maven2/org/glassfish/jaxb/txw2/2.3.1/txw2-2.3.1.jar
+    wget -O stax-ex-1.8.jar https://repo1.maven.org/maven2/org/jvnet/staxex/stax-ex/1.8/stax-ex-1.8.jar
+  wget -O hibernate-commons-annotations-5.1.2.Final.jar https://repo1.maven.org/maven2/org/hibernate/common/hibernate-commons-annotations/5.1.2.Final/hibernate-commons-annotations-5.1.2.Final.jar
+    # wget -O jboss-logging-3.3.2.Final.jar https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar
+  wget -O jandex-2.4.2.Final.jar https://repo1.maven.org/maven2/org/jboss/jandex/2.4.2.Final/jandex-2.4.2.Final.jar
+  wget -O jboss-logging-3.4.3.Final.jar  https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.4.3.Final/jboss-logging-3.4.3.Final.jar
+  wget -O jboss-transaction-api_1.2_spec-1.1.1.Final.jar https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.1.1.Final/jboss-transaction-api_1.2_spec-1.1.1.Final.jar
+
+cd ..
+
+# Hibernate HikariCP 5.6.15
+if [ ! -d hibernate-hikaricp-5.6.15/ ]; then
+  mkdir hibernate-hikaricp-5.6.15/
+fi
+
+cd hibernate-hikaricp-5.6.15/
+
+wget -O hibernate-hikaricp-5.6.15.Final.jar https://repo1.maven.org/maven2/org/hibernate/hibernate-hikaricp/5.6.15.Final/hibernate-hikaricp-5.6.15.Final.jar
+  wget -O HikariCP-3.2.0.jar https://repo1.maven.org/maven2/com/zaxxer/HikariCP/3.2.0/HikariCP-3.2.0.jar
+    wget -O slf4j-api-1.7.25.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar
+
+cd ..
+
+# SLF4J 1.7.25
+if [ ! -d slf4j-simple-1.7.25/ ]; then
+  mkdir slf4j-simple-1.7.25/
+fi
+
+cd slf4j-simple-1.7.25/
+
+wget -O slf4j-simple-1.7.25.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-simple/1.7.25/slf4j-simple-1.7.25.jar
+
+cd ..
+
+# H2 Database 2.1.214
+if [ ! -d h2-2.1.214/ ]; then
+  mkdir h2-2.1.214/
+fi
+
+cd h2-2.1.214/
+
+wget -O h2-2.1.214.jar https://repo1.maven.org/maven2/com/h2database/h2/2.1.214/h2-2.1.214.jar
+
+cd ..

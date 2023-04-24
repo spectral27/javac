@@ -1,0 +1,61 @@
+find src -type f -name "*.java" > sourcefiles.txt
+
+javac -d bin -cp src:lib/spring-context-6.0.8/* @sourcefiles.txt
+cp src/beans.xml bin/beans.xml
+
+rm sourcefiles.txt
+
+if [ ! -d temp ]; then
+  mkdir temp
+fi
+
+cd temp
+
+touch spring.handlers
+touch spring.schemas
+touch spring.tooling
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+  
+  if [ -d META-INF ]; then
+    if [ -f META-INF/spring.handlers ]; then
+      cat META-INF/spring.handlers >> spring.handlers
+    fi
+
+    if [ -f META-INF/spring.schemas ]; then
+      cat META-INF/spring.schemas >> spring.schemas
+    fi
+
+    if [ -f META-INF/spring.tooling ]; then
+      cat META-INF/spring.tooling >> spring.tooling
+    fi
+
+    rm -rf META-INF
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+if [ ! -d META-INF ]; then
+  mkdir META-INF
+fi
+
+mv spring.handlers META-INF/.
+mv spring.schemas META-INF/.
+mv spring.tooling META-INF/.
+
+cd ..
+
+touch manifest.mf
+echo "Main-Class: spc.Main" > manifest.mf
+
+jar -cfm spring-context-xml-6.0.8.jar manifest.mf -C bin . -C temp .
+
+rm -r bin
+rm -r temp
+rm manifest.mf
+
+java -jar spring-context-xml-6.0.8.jar

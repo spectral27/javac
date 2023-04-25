@@ -18,6 +18,13 @@
 
         <property name="show_sql">true</property>
 
+        <!--
+        <property name="hikari.connectionTimeout">10000</property>  Default: 30000
+        <property name="hikari.minimumIdle">5</property>            Default: same as maximumPoolSize
+        <property name="hikari.maximumPoolSize">20</property>       Default: 10
+        <property name="hikari.idleTimeout">60000</property>        Default: 600000
+        -->
+
         <mapping resource="orm.xml"/>
 
     </session-factory>

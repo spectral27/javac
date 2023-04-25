@@ -9,8 +9,6 @@ for dir in */. ; do
     rm -r lib
   fi
 
-  find . -name "*.class" -type f -delete
-
   find . -name "*.jar" -type f -delete
 
   cd ..

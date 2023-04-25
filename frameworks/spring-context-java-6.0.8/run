@@ -1,9 +1,18 @@
 find src -type f -name "*.java" > sourcefiles.txt
 
-javac -d bin -cp src:lib/spring-context-6.0.8/* @sourcefiles.txt
-cp src/beans.xml bin/beans.xml
+find lib -type f -name '*.jar' | tr '\n' ':' > jars.txt
+jars=$(cat jars.txt)
+
+javac -d bin -cp $jars:src @sourcefiles.txt
 
 rm sourcefiles.txt
+rm jars.txt
+
+cd src
+
+find . -type f -name '*.sql' -o -name '*.xml' | cpio -pdu --quiet ../bin
+
+cd ..
 
 if [ ! -d temp ]; then
   mkdir temp
@@ -52,10 +61,10 @@ cd ..
 touch manifest.mf
 echo "Main-Class: spc.Main" > manifest.mf
 
-jar -cfm spring-context-annotations-6.0.8.jar manifest.mf -C bin . -C temp .
+jar -cfm spring-context-java-6.0.8.jar manifest.mf -C bin . -C temp .
 
 rm -r bin
 rm -r temp
 rm manifest.mf
 
-java -jar spring-context-annotations-6.0.8.jar
+java -jar spring-context-java-6.0.8.jar

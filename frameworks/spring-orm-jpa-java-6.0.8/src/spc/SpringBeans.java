@@ -29,7 +29,7 @@ public class SpringBeans {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
-        // entityManagerFactory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        entityManagerFactory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         entityManagerFactory.setPackagesToScan("spc");
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");

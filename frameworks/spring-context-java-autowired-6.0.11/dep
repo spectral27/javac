@@ -1,0 +1,20 @@
+if [ ! -d lib ]; then
+  mkdir lib
+fi
+
+cd lib
+
+version=6.0.11
+
+if [ ! -d spring-context-$version ]; then
+  mkdir spring-context-$version
+fi
+
+cd spring-context-$version
+
+wget https://repo1.maven.org/maven2/org/springframework/spring-context/$version/spring-context-$version.jar
+wget https://repo1.maven.org/maven2/org/springframework/spring-aop/$version/spring-aop-$version.jar
+wget https://repo1.maven.org/maven2/org/springframework/spring-beans/$version/spring-beans-$version.jar
+wget https://repo1.maven.org/maven2/org/springframework/spring-core/$version/spring-core-$version.jar
+wget https://repo1.maven.org/maven2/org/springframework/spring-jcl/$version/spring-jcl-$version.jar
+wget https://repo1.maven.org/maven2/org/springframework/spring-expression/$version/spring-expression-$version.jar

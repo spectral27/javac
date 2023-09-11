@@ -1,0 +1,71 @@
+find lib -type f -name "*.jar" | tr "\n" ":" > jars.txt
+jars=$(cat jars.txt)
+
+find src -type f -name "*.java" > sourcefiles.txt
+
+javac -d bin -cp $jars:src @sourcefiles.txt
+
+rm sourcefiles.txt
+rm jars.txt
+
+cd src
+
+# Not used in this project
+find . -type f -name "*.sql" -o -name "*.xml" | cpio -pdu --quiet ../bin
+
+cd ..
+
+if [ ! -d temp ]; then
+  mkdir temp
+fi
+
+cd temp
+
+touch spring.handlers
+touch spring.schemas
+touch spring.tooling
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+  
+  if [ -d META-INF ]; then
+    if [ -f META-INF/spring.handlers ]; then
+      cat META-INF/spring.handlers >> spring.handlers
+    fi
+
+    if [ -f META-INF/spring.schemas ]; then
+      cat META-INF/spring.schemas >> spring.schemas
+    fi
+
+    if [ -f META-INF/spring.tooling ]; then
+      cat META-INF/spring.tooling >> spring.tooling
+    fi
+
+    rm -rf META-INF
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+if [ ! -d META-INF ]; then
+  mkdir META-INF
+fi
+
+mv spring.handlers META-INF/
+mv spring.schemas META-INF/
+mv spring.tooling META-INF/
+
+cd ..
+
+touch manifest.mf
+echo "Main-Class: spec.Main" > manifest.mf
+
+jar -cfm spring-context.jar manifest.mf -C bin . -C temp .
+
+rm -r bin
+rm -r temp
+rm manifest.mf
+
+java -jar spring-context.jar

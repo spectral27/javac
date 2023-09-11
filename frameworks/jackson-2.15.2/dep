@@ -1,0 +1,17 @@
+if [ ! -d lib ]; then
+  mkdir lib
+fi
+
+cd lib
+
+version=2.15.2
+
+if [ ! -d jackson-$version ]; then
+  mkdir jackson-$version
+fi
+
+cd jackson-$version
+
+wget https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/$version/jackson-databind-$version.jar
+wget https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/$version/jackson-annotations-$version.jar
+wget https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/$version/jackson-core-$version.jar

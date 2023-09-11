@@ -1,0 +1,47 @@
+find lib -type f -name "*.jar" | tr "\n" ":" > jars.txt
+jars=$(cat jars.txt)
+
+find src -type f -name "*.java" > sourcefiles.txt
+
+javac -d bin -cp $jars:src @sourcefiles.txt
+
+rm sourcefiles.txt
+rm jars.txt
+
+cd src
+
+# Not used in this project
+find . -type f -name "*.sql" -o -name "*.xml" | cpio -pdu --quiet ../bin
+
+cd ..
+
+if [ ! -d temp ]; then
+  mkdir temp
+fi
+
+cd temp
+
+for jar in ../lib/**/*.jar ; do
+  jar -xf $jar
+  
+  if [ -d META-INF ]; then
+    rm -rf META-INF
+  fi
+
+  if [ -f module-info.class ]; then
+    rm module-info.class
+  fi
+done
+
+cd ..
+
+touch manifest.mf
+echo "Main-Class: spec.Main" > manifest.mf
+
+jar -cfm jackson.jar manifest.mf -C bin . -C temp .
+
+rm -r bin
+rm -r temp
+rm manifest.mf
+
+java -jar jackson.jar

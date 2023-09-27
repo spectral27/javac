@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class TaskResolver {
     
     public void print() {
-        System.out.println("Spring 6.0.11");
+        System.out.println("Spring 6");
     }
 
 }

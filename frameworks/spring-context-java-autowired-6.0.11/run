@@ -8,51 +8,51 @@ javac -d bin -cp $jars:src @sourcefiles.txt
 rm sourcefiles.txt
 rm jars.txt
 
-cd src
-
 # Not used in this project
-find . -type f -name "*.sql" -o -name "*.xml" | cpio -pdu --quiet ../bin
+# cd src
+# find . -type f -name "*.sql" -o -name "*.xml" | cpio -pdu --quiet ../bin
+# cd ..
 
-cd ..
-
-if [ ! -d temp ]; then
+if [ ! -d temp ] ; then
   mkdir temp
 fi
 
 cd temp
 
-touch spring.handlers
-touch spring.schemas
-touch spring.tooling
-
 for jar in ../lib/**/*.jar ; do
   jar -xf $jar
   
   if [ -d META-INF ]; then
-    if [ -f META-INF/spring.handlers ]; then
+    if [ -f META-INF/spring.handlers ] ; then
+        if [ -f spring.handlers ] ; then
+          touch spring.handlers
+        fi
       cat META-INF/spring.handlers >> spring.handlers
     fi
 
-    if [ -f META-INF/spring.schemas ]; then
+    if [ -f META-INF/spring.schemas ] ; then
+      if [ -f spring.schemas ] ; then
+        touch spring.schemas
+      fi
       cat META-INF/spring.schemas >> spring.schemas
     fi
 
-    if [ -f META-INF/spring.tooling ]; then
+    if [ -f META-INF/spring.tooling ] ; then
+      if [ -f spring.tooling ] ; then
+        touch spring.tooling
+      fi
       cat META-INF/spring.tooling >> spring.tooling
     fi
 
     rm -rf META-INF
   fi
 
-  if [ -f module-info.class ]; then
+  if [ -f module-info.class ] ; then
     rm module-info.class
   fi
 done
 
-if [ ! -d META-INF ]; then
-  mkdir META-INF
-fi
-
+mkdir META-INF
 mv spring.handlers META-INF/
 mv spring.schemas META-INF/
 mv spring.tooling META-INF/

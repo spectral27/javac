@@ -19,40 +19,61 @@ fi
 
 cd temp
 
+mkdir spring
+touch spring/aot.factories
+
+touch spring.factories
+touch spring.handlers
+touch spring.schemas
+touch spring.tooling
+
 for jar in ../lib/**/*.jar ; do
   jar -xf $jar
   
   if [ -d META-INF ]; then
+    if [ -d META-INF/spring ]; then
+      if [ -f META-INF/spring/aot.factories ]; then
+        cat META-INF/spring/aot.factories >> spring/aot.factories
+        rm META-INF/spring/aot.factories
+      fi
+    fi
+
+    if [ -f META-INF/spring.factories ] ; then
+      cat META-INF/spring.factories >> spring.factories
+      rm META-INF/spring.factories
+    fi
+
     if [ -f META-INF/spring.handlers ] ; then
-        if [ -f spring.handlers ] ; then
-          touch spring.handlers
-        fi
       cat META-INF/spring.handlers >> spring.handlers
+      rm META-INF/spring.handlers
     fi
 
     if [ -f META-INF/spring.schemas ] ; then
-      if [ -f spring.schemas ] ; then
-        touch spring.schemas
-      fi
       cat META-INF/spring.schemas >> spring.schemas
+      rm META-INF/spring.schemas
     fi
 
     if [ -f META-INF/spring.tooling ] ; then
-      if [ -f spring.tooling ] ; then
-        touch spring.tooling
-      fi
       cat META-INF/spring.tooling >> spring.tooling
+      rm META-INF/spring.tooling
     fi
 
-    rm -rf META-INF
-  fi
+    if [ -f META-INF/license.txt ] ; then
+      rm META-INF/license.txt
+    fi
 
-  if [ -f module-info.class ] ; then
-    rm module-info.class
+    if [ -f META-INF/MANIFEST.MF ] ; then
+      rm META-INF/MANIFEST.MF
+    fi
+
+    if [ -f META-INF/notice.txt ] ; then
+      rm META-INF/notice.txt
+    fi
   fi
 done
 
-mkdir META-INF
+mv spring META-INF/
+mv spring.factories META-INF/
 mv spring.handlers META-INF/
 mv spring.schemas META-INF/
 mv spring.tooling META-INF/
